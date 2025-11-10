@@ -49,6 +49,7 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
+  console.log("🧠 Incoming Origin:", origin);
 
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
@@ -58,7 +59,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // ✅ Send headers *before* responding to preflight
   if (req.method === "OPTIONS") {
     res.status(204).end();
     return;
