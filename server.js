@@ -37,39 +37,36 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
-// CORS Configuration
+// --- 🔥 Reliable universal CORS middleware ---
 const allowedOrigins = [
-  "http://localhost:5173", // dev
-  "https://proud-forest-07ea4d00f.1.azurestaticapps.net", // azure
-  "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app", // vercel live
+  "http://localhost:5173",
+  "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
+  "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app",
   ...(process.env.CLIENT_ORIGINS
     ? process.env.CLIENT_ORIGINS.split(",").map((o) => o.trim())
     : []),
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // ✅ Allow tools like Postman or server-to-server requests
-      if (!origin) return callback(null, true);
+// Manually handle CORS headers for every request
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
 
-      // ⚠️ Don’t throw — just deny gracefully
-      console.warn(`🚫 CORS blocked: ${origin}`);
-      return callback(null, false);
-    },
-    credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 204,
-  })
-);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
 
+  // Handle preflight requests instantly
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
 
-//  Routes
+  next();
+});
+
 
 
 // Health check
