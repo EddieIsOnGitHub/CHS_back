@@ -37,7 +37,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
-// --- 🔥 Reliable universal CORS middleware ---
+// --- ✅ Final version: reliable CORS for all methods including OPTIONS ---
 const allowedOrigins = [
   "http://localhost:5173",
   "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
@@ -47,7 +47,6 @@ const allowedOrigins = [
     : []),
 ];
 
-// Manually handle CORS headers for every request
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
@@ -59,13 +58,15 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // Handle preflight requests instantly
+  // ✅ Send headers *before* responding to preflight
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
+    res.status(204).end();
+    return;
   }
 
   next();
 });
+
 
 
 
