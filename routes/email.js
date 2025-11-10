@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 const transporter = require('../config/mailer');
 
-router.post('api/send-lead-email', async (req, res) => {
+router.post("/send-lead-email", async (req, res) => {
   const {
-    type = "staffing", // Default to staffing if not provided
+    type = "staffing",
     firstName,
     lastName,
     email,
@@ -14,7 +14,7 @@ router.post('api/send-lead-email', async (req, res) => {
     industry,
     position,
     time,
-    message // Used for EMR submissions
+    message
   } = req.body;
 
   const fullName = `${firstName} ${lastName}`;
@@ -29,14 +29,10 @@ router.post('api/send-lead-email', async (req, res) => {
   let subjectPrefix = "";
 
   if (type === "emr") {
-
-    // EMR submission
     formattedMessage = message || "No message provided.";
     subjectPrefix = "EMR Submission";
     console.log("Received EMR submission:", { fullName, email, organization });
   } else {
-
-    // Staffing submission
     formattedMessage = `
 Staffing Submission
 
@@ -61,7 +57,6 @@ Best Time:    ${time}
     });
   }
 
-  // Send email
   try {
     await transporter.sendMail({
       from: `"Lead Bot" <${process.env.SMTP_USER}>`,
@@ -76,4 +71,5 @@ Best Time:    ${time}
     return res.status(500).json({ error: 'Failed to send email.' });
   }
 });
+
 module.exports = router;
