@@ -20,7 +20,7 @@ router.post("/send-lead-email", async (req, res) => {
   const fullName = `${firstName} ${lastName}`;
 
   // Validation
-  if (!email || !fullName || !organization || !phone || !time) {
+  if (type !== "emr" && (!email || !fullName || !organization || !phone || !time)) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
 
@@ -71,5 +71,8 @@ Best Time:    ${time}
     return res.status(500).json({ error: 'Failed to send email.' });
   }
 });
+
+console.log("📨 Incoming EMR payload:", req.body);
+
 
 module.exports = router;
