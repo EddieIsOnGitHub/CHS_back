@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const transporter = require('../config/mailer');
 
-router.post('/send-lead-email', async (req, res) => {
+router.post('api/send-lead-email', async (req, res) => {
   const {
     type = "staffing", // Default to staffing if not provided
     firstName,
