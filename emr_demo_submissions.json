@@ -1,0 +1,133 @@
+[
+  {
+    "role": "MD - Physician ( Not Actively Practicing)",
+    "interests": [
+      "EMR Custom Development",
+      "Clinic Website",
+      "Handling Calls (inbound/outbound, scheduiling, etc.)"
+    ],
+    "firstName": "ed",
+    "lastName": "vw",
+    "organization": "CHS",
+    "website": "https://www.chsinc.ca/",
+    "address": "address",
+    "email": "eduan.vanwaveren@gmail.com",
+    "phone": "12345678910",
+    "clinicians": "1-3",
+    "emrStatus": "Yes",
+    "currentEMR": "OSCAR PRO/Any Legacy Flavor of OSCAR",
+    "goLive": "Immediately",
+    "additionalInfo": "",
+    "time": "Evening (4pm-7pm)",
+    "howHeard": "Third-Party Review",
+    "timestamp": "2025-06-24T10:28:27.587Z"
+  },
+  {
+    "role": "MD - Physician ( Not Actively Practicing)",
+    "interests": [
+      "EMR Custom Development",
+      "Clinic Website",
+      "Handling Calls (inbound/outbound, scheduiling, etc.)"
+    ],
+    "firstName": "ed",
+    "lastName": "vw",
+    "organization": "CHS",
+    "website": "https://www.chsinc.ca/",
+    "address": "address",
+    "email": "eduan.vanwaveren@gmail.com",
+    "phone": "12345678910",
+    "clinicians": "1-3",
+    "emrStatus": "Yes",
+    "currentEMR": "OSCAR PRO/Any Legacy Flavor of OSCAR",
+    "goLive": "Within the next 2 months",
+    "additionalInfo": "",
+    "time": "Evening (4pm-7pm)",
+    "howHeard": "Third-Party Review",
+    "timestamp": "2025-06-24T10:44:50.745Z"
+  },
+  {
+    "role": "MD - Physician (Actively Practicing)",
+    "interests": [
+      "EMR Advantage - Award Winning EMR System"
+    ],
+    "firstName": "e",
+    "lastName": "e",
+    "organization": "e",
+    "website": "e",
+    "address": "e",
+    "email": "e@gmail.com",
+    "phone": "123",
+    "clinicians": "0, new clinic build",
+    "emrStatus": "Unsure",
+    "currentEMR": "",
+    "goLive": [],
+    "additionalInfo": "",
+    "time": "Afternoon (12noon-4pm)",
+    "howHeard": "Other",
+    "timestamp": "2025-06-26T15:47:11.997Z"
+  },
+  {
+    "role": "MD - Physician ( Not Actively Practicing)",
+    "interests": [
+      "EMR Advantage - Award Winning EMR System"
+    ],
+    "firstName": "e",
+    "lastName": "e",
+    "organization": "e",
+    "website": "e",
+    "address": "e",
+    "email": "e@gmail.com",
+    "phone": "123",
+    "clinicians": "0, new clinic build",
+    "emrStatus": "No",
+    "currentEMR": "",
+    "goLive": [],
+    "additionalInfo": "",
+    "time": "Morning (9am-12noon)",
+    "howHeard": "Google/Search Engine",
+    "timestamp": "2025-06-26T15:55:31.804Z"
+  },
+  {
+    "role": "MD - Physician ( Not Actively Practicing)",
+    "interests": [
+      "EMR Advantage - Award Winning EMR System"
+    ],
+    "firstName": "e",
+    "lastName": "e",
+    "organization": "e",
+    "website": "e",
+    "address": "address",
+    "email": "e@gmail.com",
+    "phone": "123",
+    "clinicians": "0, new clinic build",
+    "emrStatus": "No",
+    "currentEMR": "",
+    "goLive": "Within the next 2 months",
+    "additionalInfo": "",
+    "time": "Morning (9am-12noon)",
+    "howHeard": "Google/Search Engine",
+    "timestamp": "2025-06-26T16:03:15.699Z"
+  },
+  {
+    "role": "MD - Physician/Clinic Owner",
+    "interests": [
+      "EMR Custom Development",
+      "Importing?scanning files into any EMR"
+    ],
+    "firstName": "e",
+    "lastName": "e",
+    "organization": "e",
+    "website": "e",
+    "address": "e",
+    "email": "eduan.vanwaveren@gmail.com",
+    "phone": "123",
+    "clinicians": "0, new clinic build",
+    "emrStatus": "Unsure",
+    "currentEMR": "OSCAR PRO/Any Legacy Flavor of OSCAR",
+    "goLive": "Within the next 2 months",
+    "additionalInfo": "",
+    "time": "Afternoon (12noon-4pm)",
+    "howHeard": "Other",
+    "timestamp": "2025-06-30T16:02:03.079Z"
+  }
+]
