@@ -1,12 +1,22 @@
-// server.js
-require("dotenv").config();
+require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
-const morgan = require("morgan"); // Better logging
+const morgan = require("morgan");
+const mongoose = require("mongoose");
 const emailRoutes = require("./routes/email");
 
 const app = express();
+
+// 🔗 MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI, { dbName: "chs" })
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message);
+    process.exit(1);
+  });
+
 
 // Global Middleware
 
