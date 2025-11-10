@@ -42,6 +42,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
   "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app",
+  "https://chs-front-efxhxtduc-eddieisongithubs-projects.vercel.app", // ✅ new actual domain
   "https://chs-front.vercel.app",
   ...(process.env.CLIENT_ORIGINS
     ? process.env.CLIENT_ORIGINS.split(",").map((o) => o.trim())
