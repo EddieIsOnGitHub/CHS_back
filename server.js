@@ -42,7 +42,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
   "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app",
-   "https://chs-front.vercel.app",
+  "https://chs-front.vercel.app",
   ...(process.env.CLIENT_ORIGINS
     ? process.env.CLIENT_ORIGINS.split(",").map((o) => o.trim())
     : []),
@@ -52,7 +52,10 @@ app.use((req, res, next) => {
   const origin = req.headers.origin;
   console.log("🧠 Incoming Origin:", origin);
 
-  if (allowedOrigins.includes(origin)) {
+  // Always allow if no Origin header (like Postman)
+  if (!origin) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  } else if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
@@ -61,12 +64,12 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
   if (req.method === "OPTIONS") {
-    res.status(204).end();
-    return;
+    return res.status(204).end();
   }
 
   next();
 });
+
 
 
 
