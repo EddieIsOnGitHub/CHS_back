@@ -37,7 +37,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
-// --- ✅ Final version: reliable CORS for all methods including OPTIONS ---
+// --- 🧩 FINAL CORS FIX ---
 const allowedOrigins = [
   "http://localhost:5173",
   "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
@@ -52,19 +52,28 @@ app.use((req, res, next) => {
   const origin = req.headers.origin;
   console.log("🧠 Incoming Origin:", origin);
 
-  // Always allow if no Origin header (like Postman)
+  // Always set the CORS headers first
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  // If origin is allowed, set it; otherwise, skip
   if (!origin) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
   } else if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Origin", origin);
   }
 
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
+  // ✅ Handle preflight correctly
   if (req.method === "OPTIONS") {
-    return res.status(204).end();
+    console.log("🧩 Preflight passed for:", origin || "no origin");
+    return res.status(204).send(); // send AFTER setting headers
   }
 
   next();
