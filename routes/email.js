@@ -72,7 +72,5 @@ Best Time:    ${time}
   }
 });
 
-console.log("📨 Incoming EMR payload:", req.body);
-
 
 module.exports = router;
