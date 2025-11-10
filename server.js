@@ -38,25 +38,28 @@ app.use(limiter);
 
 
 // CORS Configuration
-
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://proud-forest-07ea4d00f.1.azurestaticapps.net",
-  "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app", // ✅ your live frontend
+  "http://localhost:5173", // dev
+  "https://proud-forest-07ea4d00f.1.azurestaticapps.net", // azure
+  "https://chs-front-gfy9unvj8-eddieisongithubs-projects.vercel.app", // vercel live
   ...(process.env.CLIENT_ORIGINS
     ? process.env.CLIENT_ORIGINS.split(",").map((o) => o.trim())
     : []),
 ];
 
-
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow tools like Postman or server-to-server requests
+      // ✅ Allow tools like Postman or server-to-server requests
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      console.warn(` Blocked CORS request from: ${origin}`);
-      return callback(new Error("Not allowed by CORS"));
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // ⚠️ Don’t throw — just deny gracefully
+      console.warn(`🚫 CORS blocked: ${origin}`);
+      return callback(null, false);
     },
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
